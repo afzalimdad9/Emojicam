@@ -1,0 +1,194 @@
+## 📄 Product Requirements Document (PRD)
+
+### 1. **Product Overview**
+
+A web-based video call and meeting platform enabling users to host and join video calls, schedule meetings, chat during calls, and manage profiles. Targeted for professionals, remote teams, and educational institutions.
+
+---
+
+### 2. **Tech Stack**
+
+| Technology                                                    | Purpose                                                                       |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| **Next.js**                                                   | React framework for SSR, routing, and API routes                              |
+| **Firebase**                                                  | Real-time database, Firestore, cloud functions, storage, and authentication   |
+| **NextAuth.js**                                               | Secure and extensible authentication with OAuth (Google, GitHub, Email, etc.) |
+| **Zod**                                                       | Schema validation for forms and APIs                                          |
+| **Formik**                                                    | Form handling and state management                                            |
+| **Tailwind CSS**                                              | Utility-first CSS for responsive UI                                           |
+| **Jotai** or **Zustand**                                      | Lightweight state management (optional)                                       |
+| **PeerJS** / **WebRTC**                                       | Real-time peer-to-peer video/audio connections                                |
+| **Socket.IO** (with Firebase Functions or Next.js API routes) | Real-time communication (e.g., chat, participant status)                      |
+| **React Query** or **SWR**                                    | Data fetching and caching                                                     |
+| **Prisma** (if you decide to integrate SQL DB later)          | ORM for PostgreSQL, MySQL, etc.                                               |
+| **Vercel**                                                    | Deployment of Next.js app                                                     |
+| **ESLint, Prettier, Husky, lint-staged**                      | Code quality and formatting tools                                             |
+
+---
+
+### 3. **User Roles**
+
+| Role                | Permissions                                                 |
+| ------------------- | ----------------------------------------------------------- |
+| **Guest**           | Join meetings with invite link, limited interaction         |
+| **Registered User** | Create/join meetings, schedule, view history, basic profile |
+| **Admin**           | Manage users, view analytics, moderate calls                |
+
+---
+
+### 4. **Core Features**
+
+#### 🔐 Authentication (NextAuth + Firebase Auth)
+
+* Sign in with Google, GitHub, or Email/Password
+* Session management
+* Profile setup on first login
+
+#### 🎥 Video Call (WebRTC + PeerJS or Firebase)
+
+* Create & join meeting rooms
+* Video/audio toggle
+* Screen sharing
+* Grid layout for multiple participants
+* Raise hand, mute all, participant list
+
+#### 💬 Chat & Reactions
+
+* Real-time chat during call (Socket.IO or Firestore)
+* Emoji reactions
+* System messages (e.g., “Afzal joined the call”)
+
+#### 📅 Meeting Scheduling
+
+* Schedule meeting with title, date, time
+* Generate invite link
+* Add to Google Calendar
+* Email reminders (using Firebase Cloud Functions or 3rd-party like SendGrid)
+
+#### 👤 Profile Management
+
+* Edit name, profile photo, and time zone
+* View meeting history
+* Account settings
+
+#### 📱 Responsive Design
+
+* Mobile and tablet support
+* Touch-friendly controls
+
+#### 🔒 Security & Privacy
+
+* Meeting password/lock feature
+* Kick/ban participants
+* Record meetings (optional, store in Firebase Storage)
+
+---
+
+### 5. **Optional / Advanced Features**
+
+* **Meeting Recording** (use `MediaRecorder API`, store in Firebase Storage)
+* **Breakout Rooms** (for group sessions)
+* **Transcripts** using Speech-to-Text API
+* **Analytics Dashboard** for Admins
+* **Push Notifications** (Firebase Cloud Messaging)
+* **Dark Mode** toggle
+
+---
+
+### 6. **Data Models**
+
+#### User (Firestore)
+
+```ts
+{
+  uid: string;
+  email: string;
+  name: string;
+  photoURL: string;
+  createdAt: Timestamp;
+}
+```
+
+#### Meeting
+
+```ts
+{
+  id: string;
+  hostId: string;
+  title: string;
+  startTime: Timestamp;
+  duration: number;
+  isActive: boolean;
+  participants: string[];
+  chat: ChatMessage[];
+}
+```
+
+#### ChatMessage
+
+```ts
+{
+  userId: string;
+  message: string;
+  sentAt: Timestamp;
+}
+```
+
+---
+
+### 7. **UI/UX Recommendations**
+
+* Modern design with Tailwind CSS and custom components
+* Use Headless UI or shadcn/ui for accessibility
+* Toast notifications (with `react-hot-toast` or similar)
+* Skeleton loaders for fetching states
+
+---
+
+### 8. **Form Validation**
+
+Use **Formik + Zod** for:
+
+* Signup / Login forms
+* Profile update
+* Meeting creation
+
+Example:
+
+```ts
+const meetingSchema = z.object({
+  title: z.string().min(3),
+  startTime: z.date(),
+  duration: z.number().min(1),
+});
+```
+
+---
+
+### 9. **Project Structure (Suggested)**
+
+```
+/pages
+  /api
+  /meetings
+  /auth
+/components
+/lib
+/hooks
+/context
+/types
+/styles
+/utils
+```
+
+---
+
+### 10. **Milestones**
+
+| Week | Deliverables                       |
+| ---- | ---------------------------------- |
+| 1    | Project setup, auth, basic layout  |
+| 2    | Meeting creation, scheduling       |
+| 3    | Video calling integration (WebRTC) |
+| 4    | Chat and participant management    |
+| 5    | Polish UI, test, and deploy        |

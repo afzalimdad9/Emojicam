@@ -1,0 +1,38 @@
+Title,Description,Priority,Status,Assignee,Labels
+Project Initialization,Set up Next.js, ESLint, Prettier, Tailwind, folder structure,3,Todo,,Setup
+Integrate NextAuth.js,Add Google, GitHub, Email/Password login,3,Todo,,Auth
+Connect Firebase Auth,Link Firebase Auth to NextAuth,3,Todo,,Auth
+Implement session management,Ensure user sessions persist,3,Todo,,Auth
+Profile setup on first login,Prompt for name, photo, time zone,3,Todo,,Auth
+Create main layout,Header, sidebar, content,3,Todo,,UI
+Add responsive navigation,Mobile/tablet support,3,Todo,,UI
+Set up protected routes,Restrict access to authenticated users,3,Todo,,Auth
+Create meeting model in Firestore,Define Firestore schema for meetings,3,Todo,,Meetings
+Implement meeting creation form,Formik + Zod validation,3,Todo,,Meetings
+Generate unique meeting links,Create and shareable links,3,Todo,,Meetings
+List upcoming and past meetings,Show meetings for user,3,Todo,,Meetings
+Add date/time pickers,For meeting scheduling,3,Todo,,Meetings
+Integrate Google Calendar API,Allow adding meetings to calendar,3,Todo,,Meetings
+Implement email reminders,Use Firebase Functions or SendGrid,3,Todo,,Meetings
+Integrate PeerJS/WebRTC,Enable video/audio calls,3,Todo,,Video
+Create/join meeting rooms,Allow users to join by link,3,Todo,,Video
+Implement video/audio toggle,User can mute/unmute,3,Todo,,Video
+Add screen sharing,Share screen in call,3,Todo,,Video
+Display participant list,Show all users in call,3,Todo,,Video
+Implement raise hand/mute all,Participant controls,3,Todo,,Video
+Add meeting password/lock,Secure meetings,3,Todo,,Video
+Integrate chat (Socket.IO/Firestore),Real-time chat in call,3,Todo,,Chat
+Implement chat UI,Sidebar chat during call,3,Todo,,Chat
+Add emoji reactions,React in chat,3,Todo,,Chat
+Show system messages,Join/leave notifications,3,Todo,,Chat
+Kick/ban participants,Admin moderation tools,3,Todo,,Security
+Admin controls for meetings,Manage users, view analytics,3,Todo,,Security
+Edit profile,Name, photo, time zone,3,Todo,,Profile
+View meeting history,Show past meetings,3,Todo,,Profile
+Account settings page,Change email/password,3,Todo,,Profile
+Add skeleton loaders,Loading states for UI,3,Todo,,UI
+Integrate toast notifications,Show success/error messages,3,Todo,,UI
+Ensure accessibility,Use Headless UI/shadcn/ui,3,Todo,,UI
+Polish responsive/mobile design,Test on all devices,3,Todo,,UI
+Set up Vercel deployment,Deploy app to Vercel,3,Todo,,Deployment
+Final QA and bugfixes,Test and fix issues,3,Todo,,Deployment 
