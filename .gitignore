@@ -7,14 +7,12 @@ out/
 
 # Env
 .env*
+!.env.example
 
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Prettier
-.prettier*
 
 # Mac
 .DS_Store
