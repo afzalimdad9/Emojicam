@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "peerjs-server": "peerjs --port 9000 --timeout 30000 --path /peerjs"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md,json}": [
@@ -17,14 +18,20 @@
     ]
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.4",
     "@next-auth/firebase-adapter": "^2.0.1",
     "@types/next-auth": "^3.13.0",
     "firebase": "^11.10.0",
+    "formik": "^2.4.6",
     "next": "15.3.5",
     "next-auth": "^4.24.11",
     "nodemailer": "^6.10.1",
+    "peerjs": "^1.5.5",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
+    "simple-peer": "^9.11.1",
+    "zod": "^3.25.74"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -38,6 +45,7 @@
     "eslint-plugin-prettier": "^5.5.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
+    "peer": "^1.0.2",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.13",
     "tailwindcss": "^4",

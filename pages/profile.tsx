@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import { useState, useEffect } from 'react';
 import { getUserProfile, setUserProfile } from '../lib/firestoreUser';
 import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
 
 export default function Profile() {
   const { data: session, status } = useSession();
@@ -36,9 +37,13 @@ export default function Profile() {
     e.preventDefault();
     if (!session?.user?.email) return;
     setSaving(true);
-    await setUserProfile(session.user.email, { name, photoURL, timeZone });
+    try {
+      await setUserProfile(session.user.email, { name, photoURL, timeZone });
+      toast.success('Profile updated!');
+    } catch (err) {
+      toast.error('Failed to update profile.');
+    }
     setSaving(false);
-    router.replace('/dashboard');
   };
 
   if (loading)

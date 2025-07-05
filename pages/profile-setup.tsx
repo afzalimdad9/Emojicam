@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { getUserProfile, setUserProfile } from '../lib/firestoreUser';
+import toast from 'react-hot-toast';
 
 export default function ProfileSetup() {
   const { data: session, status } = useSession();
@@ -32,9 +33,14 @@ export default function ProfileSetup() {
     e.preventDefault();
     if (!session?.user?.email) return;
     setSaving(true);
-    await setUserProfile(session.user.email, { name, photoURL, timeZone });
+    try {
+      await setUserProfile(session.user.email, { name, photoURL, timeZone });
+      toast.success('Profile saved!');
+      setTimeout(() => router.replace('/dashboard'), 1000);
+    } catch (err) {
+      toast.error('Failed to save profile.');
+    }
     setSaving(false);
-    router.replace('/dashboard');
   };
 
   if (loading)
